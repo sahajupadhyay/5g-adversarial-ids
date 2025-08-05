@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-08-05T17:36:36.306956",
+  "validation_samples": 100,
+  "attack_method": "Enhanced PGD (\u03b5=0.3)",
+  "performance": {
+    "evasion_rate": 0.47,
+    "attack_success_rate": 0.16,
+    "constraint_compliance": 1.0,
+    "clean_accuracy": 0.68,
+    "adversarial_accuracy": 0.53
+  },
+  "perturbation_stats": {
+    "l_inf_mean": 0.21937158841240811,
+    "l_inf_max": 1.2851269580198537,
+    "epsilon_used": 0.3
+  },
+  "constraint_violations": 0,
+  "phase_2a_status": "COMPLETE"
+}
