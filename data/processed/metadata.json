@@ -1,0 +1,12 @@
+{
+  "classes": [
+    "Mal_Del",
+    "Mal_Estab",
+    "Mal_Mod",
+    "Mal_Mod2",
+    "Normal"
+  ],
+  "n_features": 43,
+  "train_size": 1113,
+  "test_size": 477
+}

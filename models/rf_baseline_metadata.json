@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-08-05T17:16:52.572811",
+  "model_type": "RandomForestClassifier",
+  "model_parameters": {
+    "n_estimators": 200,
+    "max_depth": 15,
+    "min_samples_split": 5,
+    "min_samples_leaf": 2,
+    "random_state": 42,
+    "class_weight": "balanced",
+    "n_jobs": -1
+  },
+  "cross_validation": {
+    "n_folds": 5,
+    "macro_f1_mean": 0.6432832942764455,
+    "macro_f1_std": 0.023414560644155778,
+    "individual_scores": [
+      0.6206106590322535,
+      0.6257637099742364,
+      0.6868555447845021,
+      0.6387674418604651,
+      0.64441911573077
+    ]
+  },
+  "test_performance": {
+    "macro_f1": 0.6422668043273803
+  },
+  "training_data": {
+    "n_samples": 1113,
+    "n_features": 43,
+    "n_classes": 5
+  }
+}
