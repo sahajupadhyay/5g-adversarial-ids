@@ -1,0 +1,11 @@
+{
+  "validation_date": "2025-08-05",
+  "model_path": "models/rf_advanced.joblib",
+  "feature_transformers_path": "models/feature_transformers.joblib",
+  "scaler_path": "models/scaler_advanced.joblib",
+  "validated_macro_f1": 0.6077349675333998,
+  "expected_macro_f1": 0.608,
+  "test_samples": 477,
+  "feature_dimensions": 7,
+  "ready_for_phase2": true
+}
