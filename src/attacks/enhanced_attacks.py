@@ -314,6 +314,32 @@ def run_enhanced_attack_evaluation():
         'target_achieved': best_result['evasion_rate'] >= 0.8
     }
 
+class EnhancedAdversarialAttacks:
+    """
+    Unified interface for enhanced adversarial attacks
+    Combines FGSM and PGD with constraint compliance
+    """
+    
+    def __init__(self, model, constraints=None):
+        self.model = model
+        self.constraints = constraints
+        self.fgsm_engine = EnhancedConstraintFGSM(model, constraints_enabled=True)
+        self.pgd_engine = EnhancedConstraintPGD(model, constraints_enabled=True)
+    
+    def enhanced_fgsm_attack(self, X, y, epsilon=0.3):
+        """Enhanced FGSM attack"""
+        self.fgsm_engine.epsilon = epsilon
+        X_adv, _ = self.fgsm_engine.generate_adversarial_samples(X, y)
+        return X_adv
+    
+    def enhanced_pgd_attack(self, X, y, epsilon=0.3, alpha=None, num_iter=10, momentum=0.9):
+        """Enhanced PGD attack"""
+        self.pgd_engine.epsilon = epsilon
+        self.pgd_engine.num_steps = num_iter
+        X_adv, _ = self.pgd_engine.generate_adversarial_samples(X, y)
+        return X_adv
+
+
 if __name__ == "__main__":
     try:
         results = run_enhanced_attack_evaluation()

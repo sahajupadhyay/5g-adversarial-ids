@@ -19,16 +19,11 @@ PFCP_CONSTRAINTS = {
     'timer': {'min': 0, 'max': 255},  # Timer values in seconds
 }
 
-# Feature-specific constraints for the 7 engineered features
-# These are derived from the PCA-transformed features in our model
+# Feature-specific constraints for the 43 features in the processed dataset
+# These represent realistic bounds for 5G PFCP traffic features
 FEATURE_CONSTRAINTS = {
-    0: {'min': -3.0, 'max': 3.0, 'type': 'continuous'},  # PCA Component 1
-    1: {'min': -3.0, 'max': 3.0, 'type': 'continuous'},  # PCA Component 2
-    2: {'min': -3.0, 'max': 3.0, 'type': 'continuous'},  # PCA Component 3
-    3: {'min': -3.0, 'max': 3.0, 'type': 'continuous'},  # PCA Component 4
-    4: {'min': -3.0, 'max': 3.0, 'type': 'continuous'},  # PCA Component 5
-    5: {'min': -3.0, 'max': 3.0, 'type': 'continuous'},  # PCA Component 6
-    6: {'min': -3.0, 'max': 3.0, 'type': 'continuous'},  # PCA Component 7
+    i: {'min': -3.0, 'max': 3.0, 'type': 'continuous'} 
+    for i in range(43)  # All 43 features get the same bounds for simplicity
 }
 
 # Logical constraints for PFCP protocol
@@ -184,6 +179,48 @@ def get_attack_constraints_summary():
         'feature_descriptions': FEATURE_DESCRIPTIONS
     }
 
+class PFCPConstraints:
+    """
+    PFCP Protocol Constraints Handler
+    Provides constraint validation and projection for adversarial attacks
+    """
+    
+    def __init__(self, config=None):
+        """Initialize with configuration"""
+        self.config = config or {}
+        self.min_bounds, self.max_bounds = get_feature_bounds()
+    
+    def validate_constraints(self, X):
+        """Validate constraints for a batch of samples"""
+        if X.ndim == 1:
+            X = X.reshape(1, -1)
+        
+        violations = []
+        for i, sample in enumerate(X):
+            is_valid, sample_violations = validate_pfcp_constraints(sample)
+            if not is_valid:
+                violations.append((i, sample_violations))
+        
+        return len(violations) == 0, violations
+    
+    def project_to_constraints(self, X):
+        """Project samples to constraint-compliant space"""
+        if X.ndim == 1:
+            return project_to_pfcp_constraints(X)
+        
+        projected = np.array([project_to_pfcp_constraints(sample) for sample in X])
+        return projected
+    
+    def get_feature_bounds(self, feature_idx=None):
+        """Get bounds for specific feature or all features"""
+        if feature_idx is not None:
+            return {
+                'min': self.min_bounds[feature_idx],
+                'max': self.max_bounds[feature_idx]
+            }
+        return {'min': self.min_bounds, 'max': self.max_bounds}
+
+
 if __name__ == "__main__":
     # Test constraint functions
     print("🔧 PFCP Constraint System Test")
@@ -206,5 +243,10 @@ if __name__ == "__main__":
     # Get summary
     summary = get_attack_constraints_summary()
     print(f"✅ Constraint summary: {summary['n_features']} features")
+    
+    # Test PFCPConstraints class
+    constraints = PFCPConstraints()
+    is_valid, violations = constraints.validate_constraints(test_vector)
+    print(f"✅ Class validation test: {is_valid}")
     
     print("✅ PFCP Constraint System Ready")
