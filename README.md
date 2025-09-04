@@ -3,21 +3,29 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://python.org)
 [![Framework](https://img.shields.io/badge/ML-Scikit--Learn-orange.svg)](https://scikit-learn.org)
-[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)](#)
+[![CI](https://github.com/username/repo/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/username/repo/actions)
 
-A production-ready adversarial machine learning framework for 5G PFCP protocol intrusion detection, featuring constraint-aware adversarial attacks and robust defense mechanisms.
+**⚠️ RESEARCH PROJECT - NOT PRODUCTION READY ⚠️**
+
+A research implementation of adversarial machine learning techniques for 5G network intrusion detection. This project demonstrates synthetic attack generation and defense mechanisms for educational and research purposes.
 
 ## 🎯 Overview
 
-This system implements a complete adversarial machine learning pipeline specifically designed for 5G network security. It provides advanced threat detection capabilities while maintaining protocol compliance and offers robust defense against sophisticated adversarial attacks.
+This is a **research implementation** for educational purposes in adversarial machine learning applied to 5G network security. The system uses synthetic datasets and simplified models to demonstrate concepts in network intrusion detection and adversarial robustness.
 
-### Key Features
+**Important Disclaimers:**
+- Uses synthetic data only - no real network traffic
+- Simplified implementation for research/educational use
+- Not intended for production deployment
+- Results are indicative of research concepts, not operational performance
 
-- **🛡️ Advanced Threat Detection**: Multi-class classification of 5G PFCP attacks with 78.2% accuracy
-- **⚔️ Adversarial Robustness**: Built-in defense against evasion attacks
-- **🔒 Protocol Compliance**: Maintains 100% PFCP protocol standard adherence
-- **🚀 Production Ready**: Complete CLI interface with comprehensive logging and monitoring
-- **📊 Real-time Analysis**: Fast inference suitable for live network deployment
+### Research Features
+
+- **� Educational Implementation**: Demonstrates adversarial ML concepts
+- **🧪 Synthetic Data**: All datasets are artificially generated
+- **🔬 Research Methods**: PGD and FGSM attack implementations
+- **📊 Baseline Models**: Random Forest classifiers for threat detection
+- **🎓 Learning Tool**: Suitable for cybersecurity education
 
 ## 🏗️ Architecture
 
@@ -40,58 +48,68 @@ This system implements a complete adversarial machine learning pipeline specific
 ### Prerequisites
 
 - Python 3.8+
-- 4GB+ RAM
-- 1GB disk space
+- 2GB+ RAM recommended
+- Git for cloning repository
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/5g-adversarial-ids.git
+git clone https://github.com/your-username/5g-adversarial-ids.git
 cd 5g-adversarial-ids
+
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Verify installation
-python adv5g_cli.py --help
 ```
 
-### Basic Usage
+### Verify Installation
 
 ```bash
-# Train baseline model
-python adv5g_cli.py --mode baseline --config configs/baseline.yaml
+# Test basic functionality
+python -m pytest tests/ -v
 
-# Run threat detection
-python adv5g_cli.py --mode attack --config configs/attack.yaml
-
-# Execute complete pipeline
-python adv5g_cli.py --mode pipeline --config configs/full_pipeline.yaml
+# Run reproducible training script
+cd scripts/reproducible
+python train_baseline.py
 ```
+
+### Generate Synthetic Data and Train Models
+
+```bash
+# Create synthetic 5G dataset and train baseline model
+python scripts/reproducible/train_baseline.py
+
+# Generate adversarial attacks
+python scripts/reproducible/generate_attacks.py
+
+# Run complete system test
+python test_complete_ids_system.py
+```
+
+**Note**: The system will create synthetic datasets automatically. No real network data is required or used.
 
 ## 📋 System Components
 
-### Core Modules
+### Research Implementation
 
-| Component | Description | Performance |
-|-----------|-------------|-------------|
-| **Baseline Classifier** | Random Forest model for threat detection | 78.2% accuracy |
-| **Attack Engine** | Adversarial attack generation (PGD, FGSM) | 57% success rate |
-| **Defense System** | Adversarial training and robustness | 66.5% robust accuracy |
-| **Universal Processor** | Data preprocessing and feature engineering | 44 features |
+| Component | Description | Purpose |
+|-----------|-------------|---------|
+| **Synthetic Data Generator** | Creates artificial 5G network traffic | Research and education |
+| **Baseline Classifier** | Random Forest model for demonstration | Learning ML concepts |
+| **Attack Simulator** | Simplified adversarial attack generation | Understanding attack methods |
+| **Defense Research** | Basic adversarial training implementation | Exploring defense strategies |
 
-### Supported Attack Types
+### Implemented Attack Types (Synthetic)
 
-- **Normal Traffic**: Legitimate 5G communications
-- **Malicious Deletion**: Session termination attacks
-- **Malicious Establishment**: Unauthorized session creation
-- **Malicious Modification**: Protocol parameter manipulation
-- **Advanced Persistent Threats**: Sophisticated multi-stage attacks
-- **Zero-Day Exploits**: Unknown vulnerability exploitation
-- **Protocol Fuzzing**: Malformed packet injection
-- **Denial of Service**: Resource exhaustion attacks
-- **Session Hijacking**: Communication interception
+- **Normal Traffic**: Simulated legitimate communications
+- **Synthetic Attacks**: Artificially generated attack patterns
+- **Research Demonstrations**: Educational examples of various attack types
+
+**Note**: All attack types are synthetic and created for research purposes only.
 
 ## 🛠️ Configuration
 
@@ -130,89 +148,65 @@ robustness:
   constraint_enforcement: true
 ```
 
-## 📊 Performance Metrics
+## 📊 Research Results
 
-### Detection Performance
+### Experimental Results (Synthetic Data)
 
-| Metric | Baseline Model | Robust Model | Improvement |
-|--------|---------------|--------------|-------------|
-| **Overall Accuracy** | 78.2% | 78.2% | Maintained |
-| **Macro F1-Score** | 0.744 | 0.744 | Stable |
-| **Critical Threat Detection** | 85%+ | 85%+ | Consistent |
-| **Protocol Compliance** | 100% | 100% | Perfect |
+| Experiment | Synthetic Dataset | Educational Value |
+|------------|------------------|-------------------|
+| **Baseline Training** | Generated data | Demonstrates ML workflow |
+| **Attack Generation** | Synthetic adversarials | Shows attack methods |
+| **Defense Evaluation** | Test scenarios | Illustrates defense concepts |
 
-### Threat-Specific Performance
+**Important**: All results are based on synthetic data and simplified implementations. They demonstrate research concepts but do not represent real-world performance.
 
-| Attack Type | Precision | Recall | F1-Score |
-|-------------|-----------|---------|----------|
-| Zero-Day Exploit | 1.000 | 1.000 | 1.000 |
-| Session Hijacking | 1.000 | 1.000 | 1.000 |
-| Denial of Service | 0.986 | 1.000 | 0.993 |
-| Advanced Persistent Threat | 0.760 | 0.952 | 0.845 |
+### Educational Metrics
 
-### System Performance
-
-- **Inference Speed**: <10ms per sample
-- **Memory Usage**: <500MB during operation
-- **Throughput**: 1000+ samples/second
-- **Deployment Ready**: CLI interface with monitoring
+| Component | Metric | Educational Purpose |
+|-----------|--------|-------------------|
+| Data Generation | 1000+ synthetic samples | Learn data preparation |
+| Model Training | Random Forest baseline | Understand ML training |
+| Attack Methods | PGD/FGSM implementation | Study adversarial techniques |
+| Defense Strategies | Adversarial training | Explore robustness methods |
 
 ## 🔧 Usage Examples
 
-### Threat Detection
+### Basic Research Workflow
 
 ```python
-from src.models.baseline_rf_advanced import AdvancedRandomForestTrainer
-import joblib
+# Generate synthetic 5G dataset
+from scripts.reproducible.train_baseline import generate_synthetic_5g_data
+data = generate_synthetic_5g_data(n_samples=1000)
 
-# Load trained model
-model = joblib.load('models/rf_baseline_tuned.joblib')
-scaler = joblib.load('models/scaler.joblib')
+# Train baseline model
+from sklearn.ensemble import RandomForestClassifier
+model = RandomForestClassifier(random_state=42)
+model.fit(X_train, y_train)
 
-# Process network traffic
-features = scaler.transform(network_data)
-threats = model.predict(features)
-probabilities = model.predict_proba(features)
-
-# Interpret results
-threat_types = ['Normal', 'Malicious_Deletion', 'Advanced_APT', ...]
-detected_threats = [threat_types[t] for t in threats]
+# Simple attack generation (educational)
+import numpy as np
+def simple_fgsm(X, epsilon=0.1):
+    # Simplified FGSM for demonstration
+    noise = np.random.randn(*X.shape) * epsilon
+    return X + noise
 ```
 
-### Adversarial Robustness Testing
-
-```python
-from src.attacks.enhanced_attacks import EnhancedConstraintPGD
-
-# Initialize attack
-attack = EnhancedConstraintPGD(
-    model=model,
-    epsilon=0.3,
-    num_steps=40,
-    constraints_enabled=True
-)
-
-# Generate adversarial examples
-adversarial_samples, attack_info = attack.generate_adversarial_samples(
-    X_test, y_test
-)
-
-# Evaluate robustness
-original_accuracy = model.score(X_test, y_test)
-adversarial_accuracy = model.score(adversarial_samples, y_test)
-robustness_score = adversarial_accuracy / original_accuracy
-```
-
-### Batch Processing
+### Reproducible Research Scripts
 
 ```bash
-# Process large datasets
-python adv5g_cli.py --mode pipeline \
-    --config configs/production.yaml \
-    --input-dir /path/to/network/data \
-    --output-dir /path/to/results \
-    --batch-size 10000
+# Run complete reproducible pipeline
+cd scripts/reproducible
+
+# Step 1: Generate synthetic data and train model
+python train_baseline.py
+
+# Step 2: Generate synthetic adversarial attacks
+python generate_attacks.py
+
+# Results will be saved to models/ and results/ directories
 ```
+
+**Note**: All examples use synthetic data and simplified implementations for educational purposes.
 
 ## 🔍 API Reference
 
@@ -274,127 +268,156 @@ python adv5g_cli.py --mode {baseline|attack|defense|evaluate|pipeline}
 └── complex_5g_dataset/           # Generated test datasets
 ```
 
-## 🔒 Security Considerations
+## 🔒 Research Ethics and Security
 
-### Production Deployment
+### Responsible Research
 
-- **Input Validation**: All network data is validated before processing
-- **Resource Limits**: Configurable memory and CPU usage limits
-- **Logging**: Comprehensive audit trails for all operations
-- **Access Control**: Role-based permissions for different operations
+This project implements adversarial techniques solely for:
+- **Educational purposes** in cybersecurity research
+- **Academic study** of adversarial machine learning
+- **Defensive research** to improve security systems
 
-### Threat Model
+### Usage Guidelines
 
-The system is designed to detect and defend against:
-- Sophisticated adversarial attacks on ML models
-- Protocol-level attacks on 5G PFCP communications
-- Zero-day exploits in network infrastructure
-- Advanced persistent threats with multi-stage operations
+- ✅ **Permitted**: Academic research, education, defensive security research
+- ❌ **Prohibited**: Attacks on real systems, malicious use, unauthorized testing
 
-## 📈 Monitoring and Metrics
+### Synthetic Data Only
 
-### Real-time Monitoring
+- All datasets are artificially generated
+- No real network traffic or sensitive information
+- Safe for educational and research use
+- Additional sanitization scripts provided for data sharing
 
-- **Detection Rate**: Percentage of threats successfully identified
-- **False Positive Rate**: Rate of incorrectly flagged legitimate traffic
-- **System Performance**: Latency, throughput, and resource usage
-- **Model Drift**: Changes in prediction accuracy over time
+### See Also
 
-### Alerting
-
-```python
-# Configure alerts for production
-alerts = {
-    'accuracy_drop': 0.05,        # Alert if accuracy drops by 5%
-    'high_latency': 100,          # Alert if latency > 100ms
-    'memory_usage': 0.8,          # Alert if memory usage > 80%
-    'error_rate': 0.01            # Alert if error rate > 1%
-}
-```
+- [LICENSE](LICENSE) - MIT License with responsible use notice
+- [SECURITY_POLICY.md](SECURITY_POLICY.md) - Detailed security guidelines
 
 ## 🧪 Testing
 
-### Unit Tests
+All tests use synthetic data and simplified implementations for educational purposes.
+
+### Run Tests
+
 ```bash
-python -m pytest tests/unit/
+# Run all tests
+python -m pytest tests/ -v
+
+# Run specific test categories
+python -m unittest tests.test_data_processing
+python -m unittest tests.test_models  
+python -m unittest tests.test_attacks
+python -m unittest tests.test_cli
 ```
 
-### Integration Tests
-```bash
-python -m pytest tests/integration/
-```
+### Test Coverage
 
-### Performance Tests
-```bash
-python -m pytest tests/performance/
-```
-
-### Security Tests
-```bash
-python tests/security/adversarial_robustness_test.py
-```
+The test suite covers:
+- Data processing with synthetic datasets
+- Model training and evaluation
+- Simplified attack generation
+- Basic CLI functionality
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+This is a research project for educational purposes. Contributions are welcome for:
+
+- Improving educational content and documentation
+- Adding new synthetic attack patterns for research
+- Enhancing defense mechanisms for study
+- Better visualization and analysis tools
 
 ### Development Setup
 
 ```bash
 # Clone for development
-git clone https://github.com/your-org/5g-adversarial-ids.git
+git clone https://github.com/your-username/5g-adversarial-ids.git
 cd 5g-adversarial-ids
 
-# Install development dependencies
-pip install -r requirements-dev.txt
+# Install dependencies including development tools
+pip install -r requirements.txt
 
-# Run pre-commit hooks
-pre-commit install
+# Run tests to verify setup
+python -m pytest tests/ -v
 ```
+
+### Guidelines
+
+- Focus on educational and research value
+- Use only synthetic data in contributions
+- Follow responsible disclosure practices
+- Maintain clear documentation for learning
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Support
+## 📞 Support and Resources
 
 ### Documentation
-- [User Guide](docs/user-guide.md)
-- [API Documentation](docs/api.md)
-- [Deployment Guide](docs/deployment.md)
+- [Security Policy](SECURITY_POLICY.md) - Responsible use guidelines
+- [Test Suite](tests/) - Educational test examples
+- [Reproducible Scripts](scripts/reproducible/) - Research workflows
 
-### Community
-- [Issues](https://github.com/your-org/5g-adversarial-ids/issues)
-- [Discussions](https://github.com/your-org/5g-adversarial-ids/discussions)
-- [Wiki](https://github.com/your-org/5g-adversarial-ids/wiki)
+### Research Context
+This project demonstrates:
+- Adversarial machine learning concepts
+- 5G network security research methods  
+- Synthetic data generation techniques
+- Educational cybersecurity implementations
 
-### Commercial Support
-For enterprise support and consulting services, contact: [support@your-org.com](mailto:support@your-org.com)
+### Educational Use
+- Suitable for cybersecurity courses
+- Demonstrates ML security concepts
+- Safe synthetic environment for learning
+- Reproducible research examples
+
+## 📚 Research Background
+
+This implementation is based on concepts from:
+- Adversarial machine learning research
+- Network intrusion detection studies
+- 5G security analysis frameworks
+- Educational cybersecurity methodologies
+
+**Note**: This is a simplified research implementation designed for learning and should not be considered a complete security solution.
 
 ## 🔄 Release Notes
 
 ### v1.0.0 (Current)
-- ✅ Complete adversarial ML pipeline
-- ✅ Production-ready CLI interface
-- ✅ Comprehensive threat detection (10 attack types)
-- ✅ Advanced defense mechanisms
-- ✅ Real-time monitoring capabilities
+- ✅ Complete research implementation
+- ✅ Synthetic data generation capabilities
+- ✅ Educational adversarial ML examples
+- ✅ Reproducible research scripts
+- ✅ Comprehensive test suite
+- ✅ Privacy-compliant synthetic datasets
 
-### Previous Versions
-- **v0.3.0**: Defense mechanisms implementation
-- **v0.2.0**: Attack engine development
-- **v0.1.0**: Baseline model and infrastructure
+### Development History
+- **v0.3.0**: Defense mechanisms for research
+- **v0.2.0**: Attack generation for education
+- **v0.1.0**: Basic synthetic data and models
 
-## 📊 Benchmarks
+## 📊 Research Comparison
 
-Compared to existing solutions:
+Educational comparison with academic approaches:
 
-| System | Accuracy | Speed | Robustness | Protocol Compliance |
-|--------|----------|-------|------------|-------------------|
-| **Our System** | **78.2%** | **<10ms** | **High** | **100%** |
-| Traditional IDS | 65-70% | 50-100ms | Low | Variable |
-| Academic Solutions | 70-75% | 20-50ms | Medium | Limited |
+| Aspect | This Implementation | Typical Research |
+|--------|-------------------|------------------|
+| **Data** | Synthetic only | Often real/sensitive |
+| **Scope** | Educational | Full complexity |
+| **Reproducibility** | High | Variable |
+| **Accessibility** | Beginner-friendly | Expert-level |
+| **Safety** | Complete | Requires care |
 
 ---
 
-**Built for Production • Tested in Research • Ready for Deployment**
+**📚 Educational Research Project • 🔬 Synthetic Data Only • 🎓 Learning-Focused Implementation**
+
+## ⚠️ Final Disclaimers
+
+- **Research Only**: Not intended for production use
+- **Synthetic Data**: All datasets are artificially generated
+- **Educational Purpose**: Designed for learning cybersecurity concepts
+- **No Warranties**: Provided as-is for research and education
+- **Responsible Use**: Follow all applicable laws and ethical guidelines

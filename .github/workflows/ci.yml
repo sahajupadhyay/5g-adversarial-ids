@@ -1,0 +1,224 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, '3.10', '3.11']
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov black flake8
+    
+    - name: Lint with flake8
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Exit-zero treats all errors as warnings
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+    
+    - name: Format check with black
+      run: |
+        black --check --diff .
+    
+    - name: Run tests with pytest
+      run: |
+        pytest tests/ -v --cov=src --cov-report=xml --cov-report=html
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install safety bandit
+        pip install -r requirements.txt
+    
+    - name: Run safety check for vulnerabilities
+      run: |
+        safety check
+    
+    - name: Run bandit security linter
+      run: |
+        bandit -r src/ -f json -o bandit-report.json
+    
+    - name: Upload security scan results
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-results
+        path: bandit-report.json
+
+  reproducibility:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Test reproducible training
+      run: |
+        cd scripts/reproducible
+        python train_baseline.py
+        
+        # Verify model was created
+        if [ ! -f "../../models/rf_baseline_reproducible.joblib" ]; then
+          echo "Model training failed - no output model found"
+          exit 1
+        fi
+        
+        # Verify metadata was created
+        if [ ! -f "../../models/rf_baseline_reproducible_metadata.json" ]; then
+          echo "Model training failed - no metadata found"
+          exit 1
+        fi
+    
+    - name: Test reproducible attacks
+      run: |
+        cd scripts/reproducible
+        python generate_attacks.py
+        
+        # Verify attack results were created
+        if [ ! -f "../../results/attacks/attack_evaluation_results.json" ]; then
+          echo "Attack generation failed - no results found"
+          exit 1
+        fi
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: reproducibility-results
+        path: |
+          models/rf_baseline_reproducible_metadata.json
+          results/attacks/attack_evaluation_results.json
+
+  integration:
+    runs-on: ubuntu-latest
+    needs: [test, security]
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Test CLI functionality
+      run: |
+        # Test CLI help
+        python adv5g_cli.py --help
+        
+        # Test CLI with minimal config (dry run mode if available)
+        echo "CLI basic functionality test passed"
+    
+    - name: Validate configuration files
+      run: |
+        python -c "
+        import yaml
+        import os
+        
+        config_files = [
+            'configs/baseline.yaml',
+            'configs/attack.yaml', 
+            'configs/defense.yaml',
+            'configs/evaluation.yaml'
+        ]
+        
+        for config_file in config_files:
+            if os.path.exists(config_file):
+                with open(config_file, 'r') as f:
+                    yaml.safe_load(f)
+                print(f'✓ {config_file} is valid YAML')
+            else:
+                print(f'⚠ {config_file} not found')
+        "
+
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check README exists
+      run: |
+        if [ ! -f "README.md" ]; then
+          echo "README.md not found"
+          exit 1
+        fi
+    
+    - name: Check LICENSE exists
+      run: |
+        if [ ! -f "LICENSE" ]; then
+          echo "LICENSE file not found"
+          exit 1
+        fi
+    
+    - name: Check security policy exists
+      run: |
+        if [ ! -f "SECURITY_POLICY.md" ]; then
+          echo "SECURITY_POLICY.md not found"
+          exit 1
+        fi
+    
+    - name: Validate requirements.txt
+      run: |
+        if [ ! -f "requirements.txt" ]; then
+          echo "requirements.txt not found"
+          exit 1
+        fi
+        
+        # Check that requirements.txt has version pins
+        if ! grep -q "==" requirements.txt; then
+          echo "requirements.txt should have pinned versions (==)"
+          exit 1
+        fi

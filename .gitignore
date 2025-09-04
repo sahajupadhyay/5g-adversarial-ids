@@ -1,0 +1,43 @@
+# Ignore trained models (too large for git)
+models/*.joblib
+models/*.pkl
+models/*.pickle
+
+# Ignore processed data files  
+data/processed/*.npy
+data/processed/*.pkl
+data/processed/*.pickle
+
+# Ignore large datasets
+complex_5g_dataset/*.csv
+data/raw/*.csv
+
+# Keep only small test files
+!data/test_input.csv
+
+# Logs
+logs/*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+venv/
+env/
+.env

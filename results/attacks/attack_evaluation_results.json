@@ -1,0 +1,24 @@
+[
+  {
+    "attack_name": "FGSM",
+    "original_accuracy": 0.91,
+    "adversarial_accuracy": 0.89,
+    "success_rate": 0.055,
+    "avg_l2_perturbation": 0.30389008249258437,
+    "avg_linf_perturbation": 0.18641398309662208,
+    "num_samples": 400,
+    "random_seed": 42,
+    "timestamp": "2025-09-04T22:42:02.530266"
+  },
+  {
+    "attack_name": "PGD",
+    "original_accuracy": 0.91,
+    "adversarial_accuracy": 0.9175,
+    "success_rate": 0.0325,
+    "avg_l2_perturbation": 0.0978744822493632,
+    "avg_linf_perturbation": 0.05867500000725029,
+    "num_samples": 400,
+    "random_seed": 42,
+    "timestamp": "2025-09-04T22:42:04.269724"
+  }
+]
