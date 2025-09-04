@@ -1,0 +1,161 @@
+# 5G Adversarial IDS - Full Pipeline Configuration
+# Configuration for end-to-end pipeline execution
+
+# Pipeline control
+pipeline:
+  # Stages to execute (in order)
+  stages:
+    - "baseline"    # Train baseline model
+    - "attack"      # Generate adversarial attacks
+    - "defense"     # Train robust defense
+    - "evaluation"  # Comprehensive evaluation
+  
+  # Continue execution even if a stage fails
+  continue_on_failure: false
+  
+  # Stage dependencies
+  dependencies:
+    attack: ["baseline"]
+    defense: ["baseline"]
+    evaluation: ["baseline"]
+
+# Data configuration
+data:
+  processed_dir: "data/processed"
+  raw_dir: "data/raw"
+
+# Baseline configuration
+baseline:
+  model_type: "RandomForest"
+  hyperparameters:
+    n_estimators: 100
+    max_depth: 10
+    min_samples_split: 2
+    min_samples_leaf: 1
+    random_state: 42
+    n_jobs: -1
+  feature_engineering:
+    apply_pca: true
+    n_components: 7
+    standardize: true
+  cross_validation:
+    enabled: true
+    cv_folds: 5
+    random_state: 42
+
+# Attack configuration
+attacks:
+  attack_types:
+    - "enhanced_pgd"
+    - "enhanced_fgsm"
+    - "constraint_fgsm"
+  
+  enhanced_pgd:
+    epsilon: 0.3
+    num_steps: 40
+    constraints_enabled: true
+    
+  enhanced_fgsm:
+    epsilon: 0.3
+    constraints_enabled: true
+    
+  constraint_fgsm:
+    epsilon: 0.3
+    constraints_enabled: true
+    
+  pfcp_constraints:
+    enforce_protocol_compliance: true
+    max_packet_size: 1500
+    valid_message_types: [1, 2, 3, 4, 5, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+    session_constraints:
+      max_sessions: 1000000
+      max_session_duration: 86400
+  
+  evaluation:
+    calculate_success_rate: true
+    analyze_per_class: true
+    constraint_compliance_check: true
+    save_attack_samples: true
+    generate_attack_reports: true
+
+# Defense configuration
+defense:
+  strategy: "adversarial_training"
+  
+  adversarial_training:
+    noise_levels: [0.1, 0.2, 0.3]
+    training_rounds: 3
+    
+    attack_params:
+      epsilon: 0.3
+      num_steps: 40
+      
+    model_params:
+      n_estimators: 100
+      max_depth: 15
+      min_samples_split: 2
+      min_samples_leaf: 1
+      random_state: 42
+      n_jobs: -1
+      
+  feature_robustness:
+    apply_feature_engineering: true
+    use_all_features: true
+    feature_selection: false
+    
+  training_evaluation:
+    validate_each_round: true
+    cross_validation: true
+    cv_folds: 5
+    
+  evaluation:
+    test_against_attacks: true
+    attack_types: ["enhanced_pgd", "enhanced_fgsm"]
+    noise_levels: [0.1, 0.2, 0.3, 0.4, 0.5]
+    calculate_defense_score: true
+    generate_defense_reports: true
+
+# Evaluation configuration
+evaluation:
+  # Models to evaluate
+  models: ["baseline", "robust"]
+  
+  # Model paths (auto-detected if not specified)
+  model_paths:
+    baseline: "models/rf_baseline_tuned.joblib"
+    robust: "models/simple_robust_rf.joblib"
+  
+  # Scaler path
+  scaler_path: "models/scaler.joblib"
+  
+  # Evaluate adversarial robustness
+  evaluate_robustness: true
+  
+  # Adversarial attacks for robustness testing
+  adversarial_attacks:
+    enhanced_pgd:
+      epsilon: 0.3
+      num_steps: 40
+    enhanced_fgsm:
+      epsilon: 0.3
+  
+  # Comparison settings
+  generate_comparison_report: true
+  calculate_improvement_metrics: true
+
+# Model storage configuration
+models:
+  save_dir: "models"
+  save_intermediate_models: true
+  
+# Output configuration
+output:
+  base_dir: "results"
+  save_all_artifacts: true
+  generate_comprehensive_report: true
+  
+# Logging configuration
+logging:
+  level: "INFO"
+  save_logs: true
+  log_to_file: true

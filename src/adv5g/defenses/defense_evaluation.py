@@ -195,13 +195,28 @@ class DefenseEvaluator:
                 
                 try:
                     # Generate adversarial examples
-                    if attack_config['method'] == 'fgsm':
+                    if attack_config['method'] == 'enhanced_pgd':
+                        X_adv = attack_engine.enhanced_pgd_attack(
+                            X=X_test_scaled,
+                            y=y_test,
+                            epsilon=attack_config['epsilon'],
+                            alpha=attack_config.get('alpha', attack_config['epsilon']/4),
+                            num_iter=attack_config.get('num_iter', 10),
+                            momentum=attack_config.get('momentum', 0.9)
+                        )
+                    elif attack_config['method'] == 'enhanced_fgsm':
                         X_adv = attack_engine.enhanced_fgsm_attack(
                             X=X_test_scaled,
                             y=y_test,
                             epsilon=attack_config['epsilon']
                         )
-                    elif attack_config['method'] == 'pgd':
+                    elif attack_config['method'] in ['fgsm', 'constraint_fgsm']:
+                        X_adv = attack_engine.enhanced_fgsm_attack(
+                            X=X_test_scaled,
+                            y=y_test,
+                            epsilon=attack_config['epsilon']
+                        )
+                    elif attack_config['method'] in ['pgd', 'enhanced_pgd']:
                         X_adv = attack_engine.enhanced_pgd_attack(
                             X=X_test_scaled,
                             y=y_test,

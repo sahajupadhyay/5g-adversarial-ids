@@ -27,6 +27,79 @@ from models.utils import (
     print_performance_summary
 )
 
+def train_baseline_rf_tuned(X_train, y_train, X_test, y_test, **kwargs):
+    """
+    Train and evaluate a tuned Random Forest baseline model
+    Returns: (model, scaler, results_dict)
+    """
+    print("🔧 Training tuned Random Forest baseline...")
+    
+    # Set up hyperparameters from kwargs or use optimized defaults
+    default_params = {
+        'n_estimators': 300,
+        'max_depth': 15,
+        'max_features': 'sqrt',
+        'min_samples_leaf': 2,
+        'min_samples_split': 2,
+        'class_weight': 'balanced',
+        'random_state': 42,
+        'n_jobs': -1
+    }
+    
+    # Update with any provided parameters
+    params = {**default_params, **kwargs}
+    
+    # Preprocessing
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
+    # Train model
+    model = RandomForestClassifier(**params)
+    model.fit(X_train_scaled, y_train)
+    
+    # Evaluate
+    y_pred = model.predict(X_test_scaled)
+    
+    results = {
+        'accuracy': accuracy_score(y_test, y_pred),
+        'macro_f1': f1_score(y_test, y_pred, average='macro'),
+        'weighted_f1': f1_score(y_test, y_pred, average='weighted'),
+        'precision': precision_score(y_test, y_pred, average='macro', zero_division=0),
+        'recall': recall_score(y_test, y_pred, average='macro', zero_division=0),
+        'classification_report': classification_report(y_test, y_pred),
+        'confusion_matrix': confusion_matrix(y_test, y_pred).tolist(),
+        'hyperparameters': params
+    }
+    
+    print(f"✅ Training complete - Accuracy: {results['accuracy']:.3f}, Macro-F1: {results['macro_f1']:.3f}")
+    
+    return model, scaler, results
+
+def evaluate_model(model, scaler, data):
+    """
+    Evaluate a trained model and return comprehensive metrics
+    """
+    X_test = data['X_test']
+    y_test = data['y_test']
+    
+    # Scale the test data
+    X_test_scaled = scaler.transform(X_test)
+    
+    y_pred = model.predict(X_test_scaled)
+    
+    results = {
+        'accuracy': accuracy_score(y_test, y_pred),
+        'macro_f1': f1_score(y_test, y_pred, average='macro'),
+        'weighted_f1': f1_score(y_test, y_pred, average='weighted'),
+        'precision': precision_score(y_test, y_pred, average='macro', zero_division=0),
+        'recall': recall_score(y_test, y_pred, average='macro', zero_division=0),
+        'classification_report': classification_report(y_test, y_pred),
+        'confusion_matrix': confusion_matrix(y_test, y_pred).tolist()
+    }
+    
+    return results
+
 def hyperparameter_tuning_rf(X_train, y_train):
     """
     Perform comprehensive hyperparameter tuning for Random Forest

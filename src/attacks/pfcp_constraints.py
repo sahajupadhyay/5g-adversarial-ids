@@ -49,8 +49,8 @@ def get_feature_bounds():
     Returns:
         tuple: (min_bounds, max_bounds) as numpy arrays
     """
-    min_bounds = np.array([FEATURE_CONSTRAINTS[i]['min'] for i in range(7)])
-    max_bounds = np.array([FEATURE_CONSTRAINTS[i]['max'] for i in range(7)])
+    min_bounds = np.array([FEATURE_CONSTRAINTS[i]['min'] for i in range(43)])
+    max_bounds = np.array([FEATURE_CONSTRAINTS[i]['max'] for i in range(43)])
     
     return min_bounds, max_bounds
 
@@ -157,6 +157,31 @@ FEATURE_DESCRIPTIONS = {
     5: "Error and cause code patterns (PCA-6)",
     6: "Protocol state indicators (PCA-7)"
 }
+
+def check_pfcp_compliance(original, adversarial):
+    """
+    Check PFCP compliance rate between original and adversarial samples
+    
+    Args:
+        original: Original feature vectors (n_samples, n_features)
+        adversarial: Adversarial feature vectors (n_samples, n_features)
+        
+    Returns:
+        float: Compliance rate (0.0 to 1.0)
+    """
+    if adversarial.ndim == 1:
+        adversarial = adversarial.reshape(1, -1)
+    
+    n_samples = adversarial.shape[0]
+    compliant_count = 0
+    
+    for i in range(n_samples):
+        is_valid, _ = validate_pfcp_constraints(adversarial[i])
+        if is_valid:
+            compliant_count += 1
+    
+    compliance_rate = compliant_count / n_samples
+    return compliance_rate
 
 def get_attack_constraints_summary():
     """

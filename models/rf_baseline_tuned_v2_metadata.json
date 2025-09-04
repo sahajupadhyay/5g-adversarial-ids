@@ -1,0 +1,18 @@
+{
+  "model_type": "RandomForestClassifier",
+  "sklearn_version": "1.6.1",
+  "training_date": "2025-09-03T20:14:12.239775",
+  "performance": {
+    "macro_f1": 0.6396072840773857,
+    "accuracy": 0.649895178197065,
+    "test_samples": 477
+  },
+  "hyperparameters": {
+    "n_estimators": 300,
+    "max_depth": 15,
+    "max_features": "sqrt",
+    "min_samples_leaf": 2,
+    "min_samples_split": 2,
+    "class_weight": "balanced"
+  }
+}

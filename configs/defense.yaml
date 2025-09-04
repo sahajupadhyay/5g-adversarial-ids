@@ -1,0 +1,83 @@
+# 5G Adversarial IDS - Defense Configuration
+# Configuration for adversarial defense training and hardening
+
+# Data configuration
+data:
+  processed_dir: "data/processed"
+  raw_dir: "data/raw"
+
+# Defense configuration
+defense:
+  # Base model for adversarial training
+  base_model: "models/rf_baseline_tuned_v2.joblib"
+  base_scaler: "models/scaler_v2.joblib"
+  
+  # Defense strategy
+  strategy: "adversarial_training"
+  
+  # Adversarial training parameters
+  adversarial_training:
+    # Progressive training with multiple noise levels
+    noise_levels: [0.1, 0.2, 0.3]
+    training_rounds: 3
+    
+    # Attack parameters for training
+    attack_params:
+      epsilon: 0.3
+      alpha: 0.01
+      num_iter: 40
+      
+    # Model parameters
+    model_params:
+      n_estimators: 100
+      max_depth: 15
+      min_samples_split: 2
+      min_samples_leaf: 1
+      random_state: 42
+      n_jobs: -1
+      
+  # Feature robustness enhancement
+  feature_robustness:
+    apply_feature_engineering: true
+    use_all_features: true  # Use 43 features instead of 7 PCA
+    feature_selection: false
+    
+  # Evaluation during training
+  training_evaluation:
+    validate_each_round: true
+    cross_validation: true
+    cv_folds: 5
+    
+  # Defense evaluation
+  evaluation:
+    test_against_attacks: true
+    attack_types: ["enhanced_pgd", "enhanced_fgsm"]
+    noise_levels: [0.1, 0.2, 0.3, 0.4, 0.5]
+    calculate_defense_score: true
+
+# PFCP Protocol constraints (for attack generation during training)
+pfcp_constraints:
+  enforce_protocol_compliance: true
+  max_packet_size: 1500
+  valid_message_types: [1, 2, 3, 4, 5, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+  session_constraints:
+    max_sessions: 1000000
+    max_session_duration: 86400
+
+# Model storage configuration
+models:
+  save_dir: "models"
+  save_intermediate_models: true
+  
+# Output configuration
+output:
+  base_dir: "results"
+  save_defense_results: true
+  save_robust_model: true
+  generate_defense_reports: true
+  save_training_history: true
+  
+# Logging configuration
+logging:
+  level: "INFO"
+  save_logs: true

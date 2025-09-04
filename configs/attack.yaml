@@ -1,0 +1,68 @@
+# 5G Adversarial IDS - Attack Configuration
+# Configuration for adversarial attack generation and evaluation
+
+# Data configuration
+data:
+  processed_dir: "data/processed"
+  raw_dir: "data/raw"
+
+# Attack configuration
+attacks:
+  # Target model (can be overridden via CLI --target parameter)
+  target_model: "models/rf_baseline_tuned_v2.joblib"
+  target_scaler: "models/scaler_v2.joblib"
+  
+  # Attack types to execute
+  attack_types:
+    - "enhanced_pgd"
+    - "enhanced_fgsm"
+    - "constraint_fgsm"
+  
+  # Enhanced PGD parameters
+  enhanced_pgd:
+    epsilon: 0.3
+    num_steps: 40
+    constraints_enabled: true
+    
+  # Enhanced FGSM parameters  
+  enhanced_fgsm:
+    epsilon: 0.3
+    constraints_enabled: true
+    
+  # Constraint FGSM parameters
+  constraint_fgsm:
+    epsilon: 0.3
+    constraints_enabled: true
+    
+  # PFCP Protocol constraints
+  pfcp_constraints:
+    enforce_protocol_compliance: true
+    max_packet_size: 1500
+    valid_message_types: [1, 2, 3, 4, 5, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+    session_constraints:
+      max_sessions: 1000000
+      max_session_duration: 86400
+    
+  # Evaluation settings
+  evaluation:
+    calculate_success_rate: true
+    analyze_per_class: true
+    constraint_compliance_check: true
+    generate_adversarial_examples: true
+    save_attack_samples: true
+
+# Model storage configuration
+models:
+  save_dir: "models"
+  
+# Output configuration
+output:
+  base_dir: "results"
+  save_attack_results: true
+  save_adversarial_samples: true
+  generate_attack_reports: true
+  
+# Logging configuration
+logging:
+  level: "INFO"
+  save_logs: true

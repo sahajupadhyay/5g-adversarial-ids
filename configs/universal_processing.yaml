@@ -1,0 +1,125 @@
+# Universal Data Processing Configuration
+# This configuration enables the system to consume ANY type of data
+
+# Universal Processing Settings
+universal_processing:
+  enabled: true
+  target_features: 43  # Number of features required by 5G IDS models
+  target_samples_min: 100  # Minimum samples required for training
+  
+  # Data Processing Pipeline Configuration
+  processing:
+    
+    # Data Cleaning Configuration
+    cleaning:
+      missing_strategy: "auto"  # auto, mean, median, knn, drop
+      outlier_strategy: "iqr"   # iqr, zscore, none, clip
+      remove_duplicates: true
+      handle_infinite: true
+      optimize_dtypes: true
+      quality_threshold: 0.7    # Minimum data quality score (0-1)
+    
+    # Feature Engineering Configuration
+    feature_engineering:
+      # Categorical encoding
+      encoding_strategy: "auto"  # auto, label, onehot, target
+      
+      # Feature creation
+      create_interactions: true
+      max_interactions: 5
+      create_polynomial: false   # Set to true for complex feature relationships
+      poly_degree: 2
+      create_time_features: true
+      create_statistical_features: true
+      
+      # Text processing (if text columns detected)
+      text_processing:
+        enabled: true
+        max_features: 10
+        methods: ["length", "word_count", "sentiment"]
+    
+    # Format Standardization Configuration
+    standardization:
+      feature_selection_method: "auto"  # auto, variance, statistical, pca
+      variance_threshold: 0.01
+      scaling_method: "standard"         # standard, minmax, robust
+      handle_skewness: true
+      
+      # Feature expansion/reduction strategies
+      expansion_methods: ["polynomial", "statistical", "random"]
+      reduction_methods: ["variance", "statistical", "pca"]
+
+# Data Source Configuration
+data:
+  # Default data directory (can be overridden)
+  processed_dir: "data/processed"
+  raw_dir: "data/raw"
+  
+  # Supported input formats
+  supported_formats:
+    - ".csv"
+    - ".json" 
+    - ".xlsx"
+    - ".parquet"
+    - ".pkl"
+    - ".h5"
+    - ".xml"
+    - ".txt"
+    - ".log"
+    - ".npy"
+    - ".npz"
+  
+  # Target column detection patterns
+  target_patterns:
+    - "label"
+    - "target" 
+    - "class"
+    - "attack"
+    - "malicious"
+    - "anomaly"
+
+# Model Configuration (required by CLI validation)
+models:
+  # These are not used in universal processing but required by config validator
+  baseline_models: []
+  adversarial_models: []
+  defensive_models: []
+
+# Output Configuration
+output:
+  save_processed_data: true
+  save_processing_pipeline: true
+  generate_report: true
+  output_formats: ["numpy", "csv", "json"]
+
+# Advanced Configuration
+advanced:
+  # Memory management
+  chunk_size: 10000  # Process large files in chunks
+  max_memory_usage: "2GB"
+  
+  # Performance settings
+  n_jobs: -1  # Use all available cores
+  random_state: 42
+  
+  # Validation settings
+  validation:
+    check_feature_count: true
+    check_sample_count: true  
+    check_data_quality: true
+    check_no_missing: true
+    check_no_infinite: true
+    check_feature_variance: true
+
+# Error Handling
+error_handling:
+  on_validation_failure: "warn"  # warn, error, fix
+  on_processing_failure: "error"
+  save_error_details: true
+  create_fallback_data: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  save_processing_log: true
+  detailed_reports: true

@@ -1,0 +1,37 @@
+2025-09-04 21:08:01,993 - Adv5G-CLI - INFO - [STARTUP] 5G Adversarial IDS CLI v0.3.0 - Phase 3 - System Integration
+2025-09-04 21:08:01,994 - Adv5G-CLI - INFO - [LOGGING] Logging to: logs\adv5g_20250904_210801.log
+2025-09-04 21:08:02,009 - Adv5G-CLI - INFO - ✅ Configuration loaded from: configs\attack.yaml
+2025-09-04 21:08:02,011 - Adv5G-CLI - DEBUG - ✅ Model save directory: models
+2025-09-04 21:08:02,012 - Adv5G-CLI - INFO - ✅ Configuration validation passed
+2025-09-04 21:08:02,013 - Adv5G-CLI - DEBUG - ✅ numpy - OK
+2025-09-04 21:08:02,014 - Adv5G-CLI - DEBUG - ✅ pandas - OK
+2025-09-04 21:08:02,015 - Adv5G-CLI - DEBUG - ✅ sklearn - OK
+2025-09-04 21:08:02,016 - Adv5G-CLI - DEBUG - ✅ joblib - OK
+2025-09-04 21:08:02,016 - Adv5G-CLI - DEBUG - ✅ yaml - OK
+2025-09-04 21:08:02,017 - Adv5G-CLI - DEBUG - ✅ matplotlib - OK
+2025-09-04 21:08:02,017 - Adv5G-CLI - DEBUG - ✅ seaborn - OK
+2025-09-04 21:08:02,017 - Adv5G-CLI - DEBUG - ✅ scipy - OK
+2025-09-04 21:08:02,018 - Adv5G-CLI - INFO - ✅ All dependencies satisfied
+2025-09-04 21:08:02,019 - Adv5G-CLI - INFO - 🚀 EXECUTING UNIVERSAL DATA PROCESSING (MANDATORY FIRST STAGE)
+2025-09-04 21:08:02,020 - Adv5G-CLI - INFO - ================================================================================
+2025-09-04 21:08:02,020 - Adv5G-CLI - INFO - 🚀 STAGE 0: Universal Data Processing (Mandatory)
+2025-09-04 21:08:02,021 - Adv5G-CLI - INFO - ============================================================
+2025-09-04 21:08:02,021 - Adv5G-CLI - INFO - ================================================================================
+2025-09-04 21:08:02,022 - Adv5G-CLI - INFO - [EXPERIMENT] UNIVERSAL DATA PROCESSING
+2025-09-04 21:08:02,022 - Adv5G-CLI - INFO - ================================================================================
+2025-09-04 21:08:02,023 - Adv5G-CLI - INFO - [DATA] data/processed
+2025-09-04 21:08:02,024 - Adv5G-CLI - INFO - [MODELS] models
+2025-09-04 21:08:02,025 - Adv5G-CLI - INFO - [OUTPUT] results\complex_attacks
+2025-09-04 21:08:02,025 - Adv5G-CLI - INFO - --------------------------------------------------------------------------------
+2025-09-04 21:08:02,026 - Adv5G-CLI - INFO - 🔧 Initializing Universal Data Processor...
+2025-09-04 21:08:02,027 - Adv5G-CLI - INFO - 📥 Processing data source: data/processed
+2025-09-04 21:08:02,028 - Adv5G-CLI - INFO - 🚀 UNIVERSAL DATA PROCESSING STARTED
+2025-09-04 21:08:02,028 - Adv5G-CLI - INFO - ============================================================
+2025-09-04 21:08:02,029 - Adv5G-CLI - INFO - 📥 STAGE 1: Data Loading and Format Detection
+2025-09-04 21:08:02,029 - Adv5G-CLI - INFO - 🔍 Detecting data source type...
+2025-09-04 21:08:02,030 - Adv5G-CLI - INFO - 📁 Input: File ()
+2025-09-04 21:08:02,031 - Adv5G-CLI - ERROR - ❌ Data processing failed: Unsupported file format: 
+2025-09-04 21:08:02,031 - Adv5G-CLI - ERROR - ❌ Universal data processing failed: Unsupported file format: 
+2025-09-04 21:08:02,031 - Adv5G-CLI - ERROR - ❌ Universal data processing failed: Unsupported file format: 
+2025-09-04 21:08:02,032 - Adv5G-CLI - ERROR - ❌ UNIVERSAL DATA PROCESSING FAILED: Universal data processing failed: Unsupported file format: 
+2025-09-04 21:08:02,032 - Adv5G-CLI - ERROR - 🛑 Cannot proceed without properly processed data

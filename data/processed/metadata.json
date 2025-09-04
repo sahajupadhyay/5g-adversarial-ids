@@ -1,12 +1,55 @@
 {
   "classes": [
-    "Mal_Del",
-    "Mal_Estab",
-    "Mal_Mod",
-    "Mal_Mod2",
-    "Normal"
+    "Normal",
+    "Malicious_Deletion",
+    "Malicious_Establishment",
+    "Malicious_Modification_Type1",
+    "Malicious_Modification_Type2",
+    "Advanced_Persistent_Threat",
+    "Zero_Day_Exploit",
+    "Protocol_Fuzzing_Attack",
+    "Denial_of_Service",
+    "Session_Hijacking"
   ],
-  "n_features": 43,
-  "train_size": 1113,
-  "test_size": 477
+  "n_features": 44,
+  "train_size": 8000,
+  "test_size": 2000,
+  "label_mapping": {
+    "0": "Normal",
+    "1": "Malicious_Deletion",
+    "2": "Malicious_Establishment",
+    "3": "Malicious_Modification_Type1",
+    "4": "Malicious_Modification_Type2",
+    "5": "Advanced_Persistent_Threat",
+    "6": "Zero_Day_Exploit",
+    "7": "Protocol_Fuzzing_Attack",
+    "8": "Denial_of_Service",
+    "9": "Session_Hijacking"
+  },
+  "attack_distribution": {
+    "train": {
+      "Normal": 3940,
+      "Malicious_Deletion": 1097,
+      "Malicious_Establishment": 458,
+      "Malicious_Modification_Type1": 471,
+      "Malicious_Modification_Type2": 481,
+      "Advanced_Persistent_Threat": 333,
+      "Zero_Day_Exploit": 310,
+      "Protocol_Fuzzing_Attack": 310,
+      "Denial_of_Service": 294,
+      "Session_Hijacking": 306
+    },
+    "test": {
+      "Normal": 985,
+      "Malicious_Deletion": 274,
+      "Malicious_Establishment": 114,
+      "Malicious_Modification_Type1": 118,
+      "Malicious_Modification_Type2": 120,
+      "Advanced_Persistent_Threat": 83,
+      "Zero_Day_Exploit": 78,
+      "Protocol_Fuzzing_Attack": 78,
+      "Denial_of_Service": 73,
+      "Session_Hijacking": 77
+    }
+  }
 }

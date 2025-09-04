@@ -1,48 +1,1603 @@
 {
-  "model_type": "SimpleAdversariallyTrainedRandomForest",
-  "model_params": {
-    "n_estimators": 300,
-    "max_depth": 20,
-    "min_samples_split": 3,
-    "min_samples_leaf": 1,
-    "random_state": 42,
-    "n_jobs": -1
-  },
+  "model_type": "RobustRandomForest",
+  "training_date": "2025-09-04 13:58:16",
+  "defense_strategy": "adversarial_training",
   "training_config": {
     "noise_levels": [
       0.1,
       0.2,
       0.3
     ],
-    "adversarial_ratio": 0.4,
-    "feature_bounds": [
-      -3.0,
-      3.0
-    ]
-  },
-  "training_history": [
-    {
-      "epoch": 1,
-      "noise_level": 0.1,
-      "clean_accuracy": 0.6591928251121076,
-      "robust_accuracy": 0.5874439461883408,
-      "robustness_gap": 0.0717488789237668
+    "training_rounds": 3,
+    "attack_params": {
+      "epsilon": 0.3,
+      "num_steps": 40
     },
-    {
-      "epoch": 2,
-      "noise_level": 0.2,
-      "clean_accuracy": 0.6412556053811659,
-      "robust_accuracy": 0.5605381165919282,
-      "robustness_gap": 0.08071748878923768
-    },
-    {
-      "epoch": 3,
-      "noise_level": 0.3,
-      "clean_accuracy": 0.6233183856502242,
-      "robust_accuracy": 0.6188340807174888,
-      "robustness_gap": 0.004484304932735439
+    "model_params": {
+      "n_estimators": 100,
+      "max_depth": 15,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "random_state": 42,
+      "n_jobs": -1
     }
-  ],
-  "timestamp": "2025-09-03T13:20:45.726157",
-  "n_features": 43
+  },
+  "training_history": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "noise_level": 0.1,
+        "clean_accuracy": 0.6412556053811659,
+        "robust_accuracy": 0.5964125560538116,
+        "robustness_gap": 0.04484304932735428
+      },
+      {
+        "epoch": 2,
+        "noise_level": 0.2,
+        "clean_accuracy": 0.6681614349775785,
+        "robust_accuracy": 0.6053811659192825,
+        "robustness_gap": 0.06278026905829603
+      },
+      {
+        "epoch": 3,
+        "noise_level": 0.3,
+        "clean_accuracy": 0.6547085201793722,
+        "robust_accuracy": 0.5919282511210763,
+        "robustness_gap": 0.06278026905829592
+      }
+    ],
+    "training_time": 241.63365769386292,
+    "features_used": 43,
+    "training_samples": 1113
+  },
+  "evaluation_summary": {
+    "clean_results": {
+      "robust_model": {
+        "accuracy": 0.6792452830188679,
+        "precision": 0.6820588235294117,
+        "recall": 0.677938596491228,
+        "f1_score": 0.660646513951976,
+        "classification_report": {
+          "0": {
+            "precision": 0.475,
+            "recall": 0.8,
+            "f1-score": 0.596078431372549,
+            "support": 95.0
+          },
+          "1": {
+            "precision": 1.0,
+            "recall": 0.9791666666666666,
+            "f1-score": 0.9894736842105263,
+            "support": 96.0
+          },
+          "2": {
+            "precision": 0.5,
+            "recall": 0.22105263157894736,
+            "f1-score": 0.30656934306569344,
+            "support": 95.0
+          },
+          "3": {
+            "precision": 0.43529411764705883,
+            "recall": 0.3894736842105263,
+            "f1-score": 0.4111111111111111,
+            "support": 95.0
+          },
+          "4": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 96.0
+          },
+          "accuracy": 0.6792452830188679,
+          "macro avg": {
+            "precision": 0.6820588235294117,
+            "recall": 0.677938596491228,
+            "f1-score": 0.660646513951976,
+            "support": 477.0
+          },
+          "weighted avg": {
+            "precision": 0.6833919102232088,
+            "recall": 0.6792452830188679,
+            "f1-score": 0.662047311973583,
+            "support": 477.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            76,
+            0,
+            7,
+            12,
+            0
+          ],
+          [
+            1,
+            94,
+            0,
+            1,
+            0
+          ],
+          [
+            39,
+            0,
+            21,
+            35,
+            0
+          ],
+          [
+            44,
+            0,
+            14,
+            37,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            96
+          ]
+        ],
+        "predictions": [
+          2,
+          0,
+          1,
+          1,
+          4,
+          3,
+          0,
+          4,
+          0,
+          1,
+          0,
+          1,
+          2,
+          0,
+          3,
+          0,
+          4,
+          0,
+          0,
+          3,
+          1,
+          4,
+          0,
+          1,
+          0,
+          4,
+          1,
+          0,
+          0,
+          3,
+          3,
+          2,
+          1,
+          1,
+          0,
+          1,
+          3,
+          1,
+          1,
+          2,
+          4,
+          1,
+          1,
+          4,
+          2,
+          3,
+          0,
+          0,
+          4,
+          0,
+          2,
+          0,
+          4,
+          3,
+          1,
+          0,
+          1,
+          2,
+          0,
+          1,
+          3,
+          4,
+          4,
+          1,
+          1,
+          1,
+          4,
+          4,
+          4,
+          3,
+          2,
+          3,
+          4,
+          4,
+          3,
+          2,
+          3,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          3,
+          1,
+          0,
+          0,
+          1,
+          3,
+          2,
+          2,
+          1,
+          2,
+          4,
+          1,
+          0,
+          3,
+          1,
+          1,
+          0,
+          3,
+          0,
+          3,
+          2,
+          0,
+          3,
+          0,
+          1,
+          1,
+          1,
+          2,
+          3,
+          0,
+          3,
+          4,
+          0,
+          4,
+          0,
+          0,
+          4,
+          0,
+          4,
+          3,
+          4,
+          3,
+          2,
+          0,
+          4,
+          0,
+          1,
+          2,
+          0,
+          0,
+          3,
+          4,
+          3,
+          1,
+          4,
+          3,
+          4,
+          0,
+          1,
+          0,
+          0,
+          3,
+          2,
+          3,
+          3,
+          4,
+          1,
+          0,
+          4,
+          2,
+          0,
+          0,
+          4,
+          0,
+          3,
+          4,
+          0,
+          3,
+          1,
+          3,
+          4,
+          1,
+          0,
+          3,
+          0,
+          4,
+          2,
+          0,
+          1,
+          1,
+          4,
+          0,
+          3,
+          1,
+          0,
+          0,
+          3,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          3,
+          1,
+          3,
+          4,
+          3,
+          4,
+          4,
+          0,
+          0,
+          3,
+          3,
+          0,
+          1,
+          0,
+          3,
+          1,
+          0,
+          0,
+          1,
+          0,
+          2,
+          0,
+          1,
+          1,
+          0,
+          4,
+          0,
+          4,
+          4,
+          3,
+          3,
+          0,
+          0,
+          0,
+          4,
+          0,
+          3,
+          4,
+          0,
+          3,
+          0,
+          4,
+          0,
+          3,
+          2,
+          4,
+          0,
+          2,
+          1,
+          0,
+          1,
+          4,
+          3,
+          1,
+          4,
+          4,
+          4,
+          0,
+          2,
+          4,
+          4,
+          3,
+          0,
+          1,
+          1,
+          2,
+          1,
+          4,
+          4,
+          4,
+          3,
+          1,
+          3,
+          4,
+          0,
+          3,
+          0,
+          3,
+          1,
+          3,
+          3,
+          0,
+          1,
+          0,
+          0,
+          0,
+          4,
+          0,
+          3,
+          4,
+          4,
+          1,
+          0,
+          0,
+          2,
+          0,
+          1,
+          3,
+          0,
+          4,
+          4,
+          4,
+          4,
+          3,
+          4,
+          3,
+          2,
+          0,
+          1,
+          3,
+          4,
+          0,
+          4,
+          4,
+          0,
+          0,
+          3,
+          4,
+          4,
+          1,
+          4,
+          1,
+          0,
+          3,
+          1,
+          0,
+          4,
+          1,
+          2,
+          0,
+          3,
+          0,
+          0,
+          0,
+          3,
+          3,
+          1,
+          3,
+          1,
+          2,
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          3,
+          1,
+          2,
+          0,
+          3,
+          0,
+          1,
+          0,
+          4,
+          4,
+          0,
+          1,
+          3,
+          2,
+          3,
+          0,
+          0,
+          4,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          4,
+          0,
+          3,
+          4,
+          4,
+          0,
+          1,
+          0,
+          2,
+          0,
+          1,
+          1,
+          1,
+          4,
+          4,
+          4,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          3,
+          4,
+          4,
+          0,
+          0,
+          2,
+          2,
+          0,
+          1,
+          1,
+          2,
+          0,
+          0,
+          4,
+          4,
+          4,
+          3,
+          0,
+          0,
+          3,
+          0,
+          1,
+          4,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          4,
+          3,
+          4,
+          4,
+          0,
+          3,
+          0,
+          4,
+          1,
+          3,
+          2,
+          1,
+          0,
+          0,
+          0,
+          4,
+          1,
+          4,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4,
+          1,
+          0,
+          2,
+          4,
+          0,
+          3,
+          3,
+          4,
+          4,
+          3,
+          4,
+          0,
+          0,
+          0,
+          4,
+          1,
+          3,
+          0,
+          1,
+          2,
+          3,
+          0,
+          3,
+          0,
+          0,
+          0,
+          3,
+          2,
+          0,
+          2
+        ]
+      }
+    },
+    "robustness_results": {
+      "robust_model": {
+        "enhanced_pgd_eps_0.1": {
+          "robust_accuracy": 0.39832285115303984,
+          "evasion_rate": 0.41358024691358025,
+          "successful_attacks": 134,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.25663848017075597,
+              "max": 4.269295881299813,
+              "std": 0.6070268728492022
+            },
+            "l2_norm": {
+              "mean": 0.4118957461463556,
+              "max": 4.277087952224684,
+              "std": 0.5771880978125767
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.027010584004356165,
+                "max": 0.05483085280089199,
+                "std": 0.03332351327559554
+              },
+              "Total Fwd Packets": {
+                "mean": 0.029651445895957904,
+                "max": 0.05499254435205309,
+                "std": 0.035233683938187245
+              },
+              "Total Backward Packets": {
+                "mean": 0.02880798355912296,
+                "max": 0.05498296859456863,
+                "std": 0.03490841525440679
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.03239588646334627,
+                "max": 0.054934112640349725,
+                "std": 0.03709811952240179
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.03440732172728957,
+                "max": 0.05498286197361129,
+                "std": 0.038410725173095975
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.03933623748300859,
+                "max": 0.05491164238496277,
+                "std": 0.040481100060386146
+              },
+              "Flow Bytes/s": {
+                "mean": 0.031493332467818144,
+                "max": 0.054876118167356505,
+                "std": 0.03586990640941996
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_pgd_eps_0.1",
+            "method": "enhanced_pgd",
+            "type": "enhanced_pgd",
+            "epsilon": 0.1,
+            "num_steps": 20,
+            "num_iter": 20
+          }
+        },
+        "enhanced_pgd_eps_0.2": {
+          "robust_accuracy": 0.39832285115303984,
+          "evasion_rate": 0.41358024691358025,
+          "successful_attacks": 134,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.2966193429387926,
+              "max": 4.269295881299813,
+              "std": 0.5939157114253782
+            },
+            "l2_norm": {
+              "mean": 0.5498116598731388,
+              "max": 4.296720045432297,
+              "std": 0.5472069795185617
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.03954966711393067,
+                "max": 0.10327340301080315,
+                "std": 0.05391085655443463
+              },
+              "Total Fwd Packets": {
+                "mean": 0.03868381794680851,
+                "max": 0.10103285587737275,
+                "std": 0.05304608889839493
+              },
+              "Total Backward Packets": {
+                "mean": 0.03979933655492622,
+                "max": 0.10401016119978775,
+                "std": 0.05360682607377923
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.04039552449756897,
+                "max": 0.10424749325551691,
+                "std": 0.0543307364119354
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.04409911908383545,
+                "max": 0.10734736888552929,
+                "std": 0.05726532764114952
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.0495910853290686,
+                "max": 0.10435422225123017,
+                "std": 0.06185739420792426
+              },
+              "Flow Bytes/s": {
+                "mean": 0.039775856467526245,
+                "max": 0.10146337438744721,
+                "std": 0.05350049926206186
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_pgd_eps_0.2",
+            "method": "enhanced_pgd",
+            "type": "enhanced_pgd",
+            "epsilon": 0.2,
+            "num_steps": 20,
+            "num_iter": 20
+          }
+        },
+        "enhanced_pgd_eps_0.3": {
+          "robust_accuracy": 0.40670859538784065,
+          "evasion_rate": 0.4104938271604938,
+          "successful_attacks": 133,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.010526315789473684,
+              "evasion_rate": 0.9868421052631579,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.031578947368421054,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.33482865077002444,
+              "max": 4.269295881299813,
+              "std": 0.5818596419127195
+            },
+            "l2_norm": {
+              "mean": 0.6439937643086487,
+              "max": 4.310573105784318,
+              "std": 0.532413873932229
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.044471964565588246,
+                "max": 0.14735934112390722,
+                "std": 0.06622398642712751
+              },
+              "Total Fwd Packets": {
+                "mean": 0.04555182230126033,
+                "max": 0.15415859296487242,
+                "std": 0.06724470278110847
+              },
+              "Total Backward Packets": {
+                "mean": 0.04580233456296074,
+                "max": 0.1463581826333107,
+                "std": 0.06772317602596664
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.0515593324169888,
+                "max": 0.15967005918142452,
+                "std": 0.07280567983560055
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.05012604202861073,
+                "max": 0.1468623782527717,
+                "std": 0.07189248358768184
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.05307492921442064,
+                "max": 0.14664633469900706,
+                "std": 0.07424844924546288
+              },
+              "Flow Bytes/s": {
+                "mean": 0.04826042951117969,
+                "max": 0.1459983903861085,
+                "std": 0.0687626576766412
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_pgd_eps_0.3",
+            "method": "enhanced_pgd",
+            "type": "enhanced_pgd",
+            "epsilon": 0.3,
+            "num_steps": 20,
+            "num_iter": 20
+          }
+        },
+        "enhanced_pgd_eps_0.4": {
+          "robust_accuracy": 0.41509433962264153,
+          "evasion_rate": 0.4074074074074074,
+          "successful_attacks": 132,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.010526315789473684,
+              "evasion_rate": 0.9868421052631579,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.06315789473684211,
+              "evasion_rate": 0.9523809523809523,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.010526315789473684,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.3746804132768813,
+              "max": 4.269295881299813,
+              "std": 0.5693257769317899
+            },
+            "l2_norm": {
+              "mean": 0.7228419927948401,
+              "max": 4.338444506018778,
+              "std": 0.5225543384767165
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.05171275663029517,
+                "max": 0.207404410612661,
+                "std": 0.07982927537114368
+              },
+              "Total Fwd Packets": {
+                "mean": 0.049352134353574384,
+                "max": 0.2196248601264823,
+                "std": 0.07689023760464954
+              },
+              "Total Backward Packets": {
+                "mean": 0.055072660103477285,
+                "max": 0.2034413734885513,
+                "std": 0.08320137983003671
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.05661653718116019,
+                "max": 0.21192329539713015,
+                "std": 0.08530173518269263
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.054261854438074554,
+                "max": 0.1973973142858237,
+                "std": 0.08137793891291507
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.06614496426469742,
+                "max": 0.19146682703458018,
+                "std": 0.09448028431503586
+              },
+              "Flow Bytes/s": {
+                "mean": 0.05404821015852417,
+                "max": 0.1953282455984792,
+                "std": 0.08171007455581906
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_pgd_eps_0.4",
+            "method": "enhanced_pgd",
+            "type": "enhanced_pgd",
+            "epsilon": 0.4,
+            "num_steps": 20,
+            "num_iter": 20
+          }
+        },
+        "enhanced_pgd_eps_0.5": {
+          "robust_accuracy": 0.4339622641509434,
+          "evasion_rate": 0.37962962962962965,
+          "successful_attacks": 123,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.05263157894736842,
+              "evasion_rate": 0.9473684210526315,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.08421052631578947,
+              "evasion_rate": 0.7142857142857143,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.042105263157894736,
+              "evasion_rate": 0.972972972972973,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.5090290419302209,
+              "max": 4.269295881299813,
+              "std": 0.5318547771059601
+            },
+            "l2_norm": {
+              "mean": 1.0911370842264552,
+              "max": 4.4664618262941715,
+              "std": 0.5358160249472447
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.07952511090073947,
+                "max": 0.38520490788147543,
+                "std": 0.14120296108580918
+              },
+              "Total Fwd Packets": {
+                "mean": 0.05996070043514747,
+                "max": 0.3608094630129625,
+                "std": 0.11333125072006894
+              },
+              "Total Backward Packets": {
+                "mean": 0.0751053160463366,
+                "max": 0.39946967349950857,
+                "std": 0.13553938674836047
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.07854197862164394,
+                "max": 0.3726963697722743,
+                "std": 0.14047886654271455
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.08255275516823964,
+                "max": 0.36184487642496316,
+                "std": 0.14432869417161456
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.07652099378152677,
+                "max": 0.37599180598564336,
+                "std": 0.13714584909765254
+              },
+              "Flow Bytes/s": {
+                "mean": 0.07771899239768527,
+                "max": 0.3965587282244072,
+                "std": 0.13865506377846426
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_pgd_eps_0.5",
+            "method": "enhanced_pgd",
+            "type": "enhanced_pgd",
+            "epsilon": 0.5,
+            "num_steps": 20,
+            "num_iter": 20
+          }
+        },
+        "enhanced_fgsm_eps_0.1": {
+          "robust_accuracy": 0.39832285115303984,
+          "evasion_rate": 0.41358024691358025,
+          "successful_attacks": 134,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.33505062912576644,
+              "max": 4.269295881299813,
+              "std": 0.5814145595281105
+            },
+            "l2_norm": {
+              "mean": 0.8921526582077163,
+              "max": 4.373429697855397,
+              "std": 0.531810874162183
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.09433962264150944,
+                "max": 0.15000000000000002,
+                "std": 0.11893113357171446
+              },
+              "Total Fwd Packets": {
+                "mean": 0.1,
+                "max": 0.15000000000000002,
+                "std": 0.12206038744336777
+              },
+              "Total Backward Packets": {
+                "mean": 0.09088050314465411,
+                "max": 0.15000000000000002,
+                "std": 0.11675605587379519
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.09402515723270442,
+                "max": 0.15000000000000002,
+                "std": 0.1171998698856208
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.09622641509433963,
+                "max": 0.15000000000000002,
+                "std": 0.11810761468597128
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.11666666666666667,
+                "max": 0.15000000000000002,
+                "std": 0.1311520579619774
+              },
+              "Flow Bytes/s": {
+                "mean": 0.0949685534591195,
+                "max": 0.15000000000000002,
+                "std": 0.11822812073652494
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_fgsm_eps_0.1",
+            "method": "enhanced_fgsm",
+            "type": "enhanced_fgsm",
+            "epsilon": 0.1,
+            "num_steps": null,
+            "num_iter": null
+          }
+        },
+        "enhanced_fgsm_eps_0.2": {
+          "robust_accuracy": 0.40041928721174,
+          "evasion_rate": 0.4104938271604938,
+          "successful_attacks": 133,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.010526315789473684,
+              "evasion_rate": 0.9523809523809523,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.46210255624572655,
+              "max": 4.269295881299813,
+              "std": 0.54166246784478
+            },
+            "l2_norm": {
+              "mean": 1.5825572371827177,
+              "max": 4.681547534959305,
+              "std": 0.6749409228578642
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.18867924528301888,
+                "max": 0.30000000000000004,
+                "std": 0.23786226714342892
+              },
+              "Total Fwd Packets": {
+                "mean": 0.2,
+                "max": 0.30000000000000004,
+                "std": 0.24412077488673553
+              },
+              "Total Backward Packets": {
+                "mean": 0.18176100628930822,
+                "max": 0.30000000000000004,
+                "std": 0.23351211174759037
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.18805031446540885,
+                "max": 0.30000000000000004,
+                "std": 0.2343997397712416
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.19245283018867926,
+                "max": 0.30000000000000004,
+                "std": 0.23621522937194256
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.23333333333333334,
+                "max": 0.30000000000000004,
+                "std": 0.2623041159239548
+              },
+              "Flow Bytes/s": {
+                "mean": 0.189937106918239,
+                "max": 0.30000000000000004,
+                "std": 0.2364562414730499
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_fgsm_eps_0.2",
+            "method": "enhanced_fgsm",
+            "type": "enhanced_fgsm",
+            "epsilon": 0.2,
+            "num_steps": null,
+            "num_iter": null
+          }
+        },
+        "enhanced_fgsm_eps_0.3": {
+          "robust_accuracy": 0.39832285115303984,
+          "evasion_rate": 0.41358024691358025,
+          "successful_attacks": 134,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.5893316439033391,
+              "max": 4.269295881299813,
+              "std": 0.5041444907676799
+            },
+            "l2_norm": {
+              "mean": 2.2830932686127308,
+              "max": 5.130973330868477,
+              "std": 0.9393571395315392
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.28301886792452835,
+                "max": 0.44999999999999996,
+                "std": 0.3567934007151433
+              },
+              "Total Fwd Packets": {
+                "mean": 0.3000000000000001,
+                "max": 0.44999999999999996,
+                "std": 0.36618116233010317
+              },
+              "Total Backward Packets": {
+                "mean": 0.2726415094339623,
+                "max": 0.44999999999999996,
+                "std": 0.35026816762138546
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.2820754716981133,
+                "max": 0.44999999999999996,
+                "std": 0.3515996096568623
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.28867924528301897,
+                "max": 0.44999999999999996,
+                "std": 0.3543228440579138
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.3500000000000001,
+                "max": 0.44999999999999996,
+                "std": 0.3934561738859322
+              },
+              "Flow Bytes/s": {
+                "mean": 0.28490566037735854,
+                "max": 0.44999999999999996,
+                "std": 0.3546843622095747
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_fgsm_eps_0.3",
+            "method": "enhanced_fgsm",
+            "type": "enhanced_fgsm",
+            "epsilon": 0.3,
+            "num_steps": null,
+            "num_iter": null
+          }
+        },
+        "enhanced_fgsm_eps_0.4": {
+          "robust_accuracy": 0.39832285115303984,
+          "evasion_rate": 0.41358024691358025,
+          "successful_attacks": 134,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.7175401775638083,
+              "max": 4.269295881299813,
+              "std": 0.4690876217987425
+            },
+            "l2_norm": {
+              "mean": 2.9909708311309258,
+              "max": 5.711995038695635,
+              "std": 1.2441460277829737
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.37735849056603776,
+                "max": 0.6000000000000001,
+                "std": 0.47572453428685785
+              },
+              "Total Fwd Packets": {
+                "mean": 0.4,
+                "max": 0.6000000000000001,
+                "std": 0.48824154977347106
+              },
+              "Total Backward Packets": {
+                "mean": 0.36352201257861644,
+                "max": 0.6000000000000001,
+                "std": 0.46702422349518075
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.3761006289308177,
+                "max": 0.6000000000000001,
+                "std": 0.4687994795424832
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.3849056603773585,
+                "max": 0.6000000000000001,
+                "std": 0.4724304587438851
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.4666666666666667,
+                "max": 0.6000000000000001,
+                "std": 0.5246082318479096
+              },
+              "Flow Bytes/s": {
+                "mean": 0.379874213836478,
+                "max": 0.6000000000000001,
+                "std": 0.4729124829460998
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_fgsm_eps_0.4",
+            "method": "enhanced_fgsm",
+            "type": "enhanced_fgsm",
+            "epsilon": 0.4,
+            "num_steps": null,
+            "num_iter": null
+          }
+        },
+        "enhanced_fgsm_eps_0.5": {
+          "robust_accuracy": 0.39832285115303984,
+          "evasion_rate": 0.41358024691358025,
+          "successful_attacks": 134,
+          "total_clean_correct": 324,
+          "class_robustness": {
+            "Normal": {
+              "clean_accuracy": 0.8,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Estab": {
+              "clean_accuracy": 0.9791666666666666,
+              "robust_accuracy": 0.9791666666666666,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            },
+            "Mal_Del": {
+              "clean_accuracy": 0.22105263157894736,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod": {
+              "clean_accuracy": 0.3894736842105263,
+              "robust_accuracy": 0.0,
+              "evasion_rate": 1.0,
+              "sample_count": 95
+            },
+            "Mal_Mod2": {
+              "clean_accuracy": 1.0,
+              "robust_accuracy": 1.0,
+              "evasion_rate": 0.0,
+              "sample_count": 96
+            }
+          },
+          "perturbation_stats": {
+            "l_inf_norm": {
+              "mean": 0.847915159029141,
+              "max": 4.269295881299813,
+              "std": 0.4363278748292481
+            },
+            "l2_norm": {
+              "mean": 3.69973018580582,
+              "max": 6.425681856587949,
+              "std": 1.5602522279923043
+            },
+            "feature_perturbations": {
+              "Flow Duration": {
+                "mean": 0.4716981132075472,
+                "max": 0.75,
+                "std": 0.5946556678585722
+              },
+              "Total Fwd Packets": {
+                "mean": 0.5,
+                "max": 0.75,
+                "std": 0.6103019372168388
+              },
+              "Total Backward Packets": {
+                "mean": 0.45440251572327045,
+                "max": 0.75,
+                "std": 0.5837802793689758
+              },
+              "Total Length of Fwd Packets": {
+                "mean": 0.470125786163522,
+                "max": 0.75,
+                "std": 0.5859993494281039
+              },
+              "Total Length of Bwd Packets": {
+                "mean": 0.4811320754716981,
+                "max": 0.75,
+                "std": 0.5905380734298563
+              },
+              "Fwd Packet Length Mean": {
+                "mean": 0.5833333333333334,
+                "max": 0.75,
+                "std": 0.655760289809887
+              },
+              "Flow Bytes/s": {
+                "mean": 0.4748427672955975,
+                "max": 0.75,
+                "std": 0.5911406036826247
+              }
+            }
+          },
+          "attack_config": {
+            "name": "enhanced_fgsm_eps_0.5",
+            "method": "enhanced_fgsm",
+            "type": "enhanced_fgsm",
+            "epsilon": 0.5,
+            "num_steps": null,
+            "num_iter": null
+          }
+        }
+      }
+    },
+    "comparison": {
+      "summary": {
+        "robust_model": {
+          "clean_accuracy": 0.6792452830188679,
+          "clean_f1": 0.660646513951976,
+          "avg_robust_accuracy": 0.40461215932914046,
+          "avg_evasion_rate": 0.40895061728395066,
+          "robustness_score": 59.10493827160494,
+          "robustness_improvement": 16.104938271604937
+        }
+      },
+      "detailed": {},
+      "rankings": {
+        "by_clean_accuracy": [
+          "robust_model"
+        ],
+        "by_robustness": [
+          "robust_model"
+        ]
+      },
+      "defense_score": 0.33962264150943394
+    }
+  },
+  "comparison_results": {
+    "comparison_available": false
+  }
 }
