@@ -1,0 +1,52 @@
+{
+  "phase": 2,
+  "status": "completed",
+  "timestamp": "2025-09-12T18:48:01.716023",
+  "performance_targets_met": false,
+  "final_metrics": {
+    "accuracy": 0.9281890763926692,
+    "f1": 0.8767709792931652,
+    "precision": 0.7812846836847946,
+    "recall": 0.9988471089038666,
+    "avg_inference_time_ms": 0.19804832724251492,
+    "classification_report": {
+      "0.0": {
+        "precision": 0.9995618765165812,
+        "recall": 0.9039071071559186,
+        "f1-score": 0.9493310287433583,
+        "support": 32812
+      },
+      "1.0": {
+        "precision": 0.7812846836847946,
+        "recall": 0.9988471089038666,
+        "f1-score": 0.8767709792931652,
+        "support": 11276
+      },
+      "accuracy": 0.9281890763926692,
+      "macro avg": {
+        "precision": 0.8904232801006879,
+        "recall": 0.9513771080298926,
+        "f1-score": 0.9130510040182618,
+        "support": 44088
+      },
+      "weighted avg": {
+        "precision": 0.9437350386838099,
+        "recall": 0.9281890763926692,
+        "f1-score": 0.9307729830710579,
+        "support": 44088
+      }
+    },
+    "confusion_matrix": [
+      [
+        29659,
+        3153
+      ],
+      [
+        13,
+        11263
+      ]
+    ]
+  },
+  "training_duration_seconds": 357.19761,
+  "next_phase": "Phase 3: Adversarial Attack Implementation"
+}

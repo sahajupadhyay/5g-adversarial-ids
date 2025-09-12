@@ -1,0 +1,85 @@
+{
+  "phase": 3,
+  "status": "completed",
+  "timestamp": "2025-09-12T18:49:23.320019",
+  "attack_configurations": 6,
+  "total_adversarial_samples": 264528,
+  "attack_summary": {
+    "total_attacks_performed": 6,
+    "attack_types_used": [
+      "FGSM",
+      "PGD"
+    ],
+    "epsilon_values_tested": [
+      0.05,
+      0.1,
+      0.01
+    ],
+    "total_samples_attacked": 264528,
+    "total_successful_attacks": 116872.0,
+    "overall_success_rate": 0.4418133430109478,
+    "attack_history": [
+      {
+        "attack_type": "FGSM",
+        "epsilon": 0.01,
+        "total_samples": 44088,
+        "successful_attacks": 17217.0,
+        "success_rate": 0.3905144256940664,
+        "average_l2_perturbation": 4.217906951904297,
+        "timestamp": 1757683114.983653
+      },
+      {
+        "attack_type": "FGSM",
+        "epsilon": 0.05,
+        "total_samples": 44088,
+        "successful_attacks": 17611.0,
+        "success_rate": 0.3994510978043912,
+        "average_l2_perturbation": 4.229162216186523,
+        "timestamp": 1757683120.1204998
+      },
+      {
+        "attack_type": "FGSM",
+        "epsilon": 0.1,
+        "total_samples": 44088,
+        "successful_attacks": 17231.0,
+        "success_rate": 0.39083197241879875,
+        "average_l2_perturbation": 4.266357421875,
+        "timestamp": 1757683125.240603
+      },
+      {
+        "attack_type": "PGD",
+        "epsilon": 0.01,
+        "total_samples": 44088,
+        "successful_attacks": 18502.0,
+        "success_rate": 0.41966067864271456,
+        "average_l2_perturbation": 4.217820644378662,
+        "timestamp": 1757683136.266927
+      },
+      {
+        "attack_type": "PGD",
+        "epsilon": 0.05,
+        "total_samples": 44088,
+        "successful_attacks": 21010.0,
+        "success_rate": 0.47654690618762474,
+        "average_l2_perturbation": 4.225884437561035,
+        "timestamp": 1757683147.155853
+      },
+      {
+        "attack_type": "PGD",
+        "epsilon": 0.1,
+        "total_samples": 44088,
+        "successful_attacks": 25301.0,
+        "success_rate": 0.5738749773180911,
+        "average_l2_perturbation": 4.249443054199219,
+        "timestamp": 1757683158.0527942
+      }
+    ],
+    "model_prediction_stats": {
+      "total_predictions": 1983960,
+      "attack_successes": 0,
+      "success_rate": 0.0
+    }
+  },
+  "evaluation_results": {},
+  "next_phase": "Phase 4: Adversarial Defense Implementation"
+}
